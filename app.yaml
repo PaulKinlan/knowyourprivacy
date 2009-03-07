@@ -1,0 +1,24 @@
+application: knowyourprivacy
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+-   url: /
+    static_files: index.html
+    upload: index.html
+-   url: /index.html
+    static_files: index.html
+    upload: index.html
+-   url: /PersonallyIdentifiableInformation.html
+    static_files: PersonallyIdentifiableInformation.html
+    upload: PersonallyIdentifiableInformation.html
+-   url: /privacy.html
+    static_files: privacy.html
+    upload: privacy.html
+-   url: /css
+    static_dir: css
+-   url: /images
+    static_dir: images
+-   url: .*
+    script: knowyourprivacy.py

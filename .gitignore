@@ -1,0 +1,3 @@
+# Ignores files so they are not added into the
+*.pyc
+*.bat

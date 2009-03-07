@@ -1,0 +1,118 @@
+<fb:header/>
+<div style='padding: 20px'>
+<img src="{{info.pic}}" style="float:left; margin-right: 10px;"/><fb:name uid="{{ uid }}" capitalize="true" useyou="false" />, Welcome to the "Know Your Privacy" application.
+<p>This application is designed to give you insight into how the data in your profile is available to Third Party applications.</p>
+
+<p>Key pieces of your Facebook profile are available to external applications, this information could be used for purposes that harm you.</p>
+<p>Not only is your information at risk by adding an untrusted application, so is your friends data.</p>
+<h2>Disclaimer</h2>
+<p>This application is for your informational purposes only. This application in no way suggests that the applications that you have installed in your profile are in anyway using your data for purposes other than those set out by their privacy statements.</p>
+<p>The advice given by this application is <b>common sense</b> and in no way represents the opinions of my employer's past,
+present and future. The information is not guarnteed to be correct, and the author cannot be held responsible. If you require accurate information contact your local authorities. 
+        Informational Links are at the end of this application.</p>	
+<p>If you belive you have been a victim of identity theft contact the police and your banks <b>immediately</b>.</p>
+
+<h1>Personally Identifiable Information</h1>
+Most of the personal information that you give to Facebook is available to third-party applications.  This information could be used identity thieves to steal your identity.  Identity theives don't need a lot of information claim an identity, some of which is available through Facebook.
+<table width="100%" summary="This table shows the personally identifiable information that is available through Facebook to external applications  External applications could use this information to perpertrate identitity theft">
+        <caption>Personally Identifiable Information</caption>
+        <tr><th width="20%">Information</th><th width="20%">Value</th><th>Information</th></tr>
+        <tr>
+                <td>Sex</td><td>{{ info.sex }}</td><td>If gender information can't be obtained from your first name, the sex will give a very good indiction of your title (Mr, Mrs, Ms etc.)</td>
+                </tr>	
+        <tr>
+        <td>First Name</td><td>{{ info.first_name }}</td><td>Your first name is a key part of your identity and can be used to identify you as an individual</td>
+        </tr>
+        <tr>
+        <td>Last Name</td><td>{{ info.last_name }}</td><td>Your surname is the corner stone of your identity, without knowning your surname a fraudster will not know who you are and therefore not be able to use your identity.</td>
+        </tr>		
+        <tr>
+        <td>Birthday</td><td>{{ info.birthday }}</td><td>Your date of birth is a key component of your identity that can be used by Identity Theft fraudsters.  It is relativly easy for an Identity thief to guess the year of your Birth, and likewise the month.  It is a lot harder for them to know the exact date.</td>
+        </tr>
+</table>
+
+<fb:error><fb:message>Considerations</fb:message>When adding an application to your profile consider <b>exactly</b> the information that you are willing to let them view. If you combine all four pieces of the above information it is very easy for fraudster to obtain your identity.  The more information that you hide from view, the less likely that a fraudster can use your information. If you don't trust the application vendor, think twice about adding the application. <ul><li>It is not possible to hide your first name and surname from Facebook once you have joined the system.</li><li>Consider using Facebooks own privacy control for Birthdays.  <a href="http://www.new.facebook.com/privacy/?ref=mb">Edit</a> your profile and select "Don't show my birthday in my profile".  Third Party Applications can no longer see your Birthday.</li></ul></fb:error>
+<br/>
+<table width="100%" summary="This table shows the personally identifiable information that is available through Facebook to external applications External applications could use this information to perpertrate identitity theft">
+        <caption>Home Town Information</caption>
+        <tr><th width="20%">City</th><th width="20%">State</th><th>Zip/Postal Code</th><th>Country</th></tr>
+        <tr><td>{{ info.hometown_location.city }}</td><td>{{ info.hometown_location.state }}</td><td>{{ info.hometown_location.zip }}</td><td>{{ info.hometown_location.country }}</td></tr>
+</table>
+        <fb:error><fb:message>Considerations</fb:message><ul><li>If it is not needed, remove as much location information as possible</li><li>Your Zipcode if present is visible to external applications. If you require that your Zip code be on your profile <a href="http://www.new.facebook.com/profile.php?id={{ uid }}&v=info&viewas={{ uid }}">edit</a> your profile and select the privacy setting "Only my friends".</li></ul></fb:error>
+<br/>
+        <table width="100%" summary="This table shows the personally identifiable information that is available through Facebook to external applications.  External applications could use this information to perpertrate identitity theft.">
+        <caption>Current Location Information</caption>
+        <tr><th width="20%">City</th><th width="20%">State</th><th>Zip/Postal Code</th><th>Country</th></tr>
+        <tr><td>{{ info.current_location.city }}</td><td>{{ info.current_location.state }}</td><td>{{ info.current_location.zip }}</td><td>{{ info.current_location.country }}</td></tr>
+</table>
+        <fb:error><fb:message>Considerations</fb:message><ul><li>If it is not needed, remove as much location information as possible</li><li>Your Zipcode if present is visible to external applications. If you require that your Zip code be on your profile <a href="http://www.new.facebook.com/profile.php?id={{ uid }}&v=info&viewas={{ uid }}">edit</a> your profile and select the privacy setting "Only my friends".</li></ul></fb:error>
+<br/>
+<h1>Time and Place information</h1>
+<p>The time and place information held on your profile (Education and Work history) identifies to third party application what you have done and when you did it.</p>
+<p>This inforamtion is commonly used as an added authentication mechanism for many web sites and other institutions (such as banks).</p>
+<h2>Education History</h2>
+<table width="100%" summary="This table shows the time and place information that is available through Facebook to external applications External applications could use this information to perpertrate identitity theft">
+        <tr><th>School</th><th>Degree</th><th>Concentrations</th><th>Began</th></tr>
+        {% for emp in info.education_history %}
+        <tr><td>{{ emp.name }}</td><td>{{ emp.degree }}</td><td>{{ emp.cocentrations }}</td><td>{{ emp.year }}</td></tr>
+        {% endfor %}
+</table>
+<fb:error><fb:message>Considerations</fb:message>The information provided in the education history when used in combination with your personally identifiable information could provide fraudsters with all they need to by-pass authentication measures of the companies whose products you use.  If you really need your education history in your profile, limit the data to only the places you have worked and remove any information related to when you worked there. <ul><li>Education Information can't be hidden, if you don't want third-party applications to see this data, remove your education history.</li><li>High school information is also available to third party applications.</li></ul></fb:error>
+<br/>
+<h2>Employment History</h2>
+<table width="100%" summary="This table shows the time and place information that is available through Facebook to external applications External applications could use this information to perpertrate identitity theft.">
+        <tr><th>Organisation Name</th><th>Job title</th><th>Job Description</th><th>Time</th></tr>
+        {% for emp in info.work_history %}
+        <tr><td>{{ emp.company_name }}</td><td>{{ emp.position }}</td><td>{{ emp.description }}</td><td>{{ emp.start_date}} {{ emp.end_date }}</td></tr>
+        {% endfor %}
+</table>
+<fb:error><fb:message>Considerations</fb:message><p>Current employer information can be used as an authentication mechanism by organisations.</p><p>Exposing your employment history could give fraudsters an extra vector into obtaining more information about your personal details. For instance, an identity thief could contact one of your ex-employers to ask for a "reference". If you really need your employment history in your profile, limit the data to only the places you have worked and remove any information related to when you worked there.</p><ul><li>Emloyment Information can't be hidden, if you don't want third-party applications to see this data, remove your employment history.</li></ul></fb:error>
+<br/>
+<h2>Affiliations</h2>
+<table width="100%" summary="This table shows the time and place information that is available through Facebook to external applications External applications could use this information to perpertrate identitity theft">
+        <tr><th>Name</th><th>Status</th><th>Region</th><th>Year</th></tr>
+        {% for emp in info.affiliations %}
+        <tr><td>{{ emp.name }}</td><td>{{ emp.status }}</td><td>{{ emp.region }}</td><td>{{ emp.year }}</td></tr>
+        {% endfor %}
+</table>
+<fb:error><fb:message>Considerations</fb:message><p>Current employer information can be used as an authentication mechanism by organisations.</p><p>Exposing your employment history could give fraudsters an extra vector into obtaining more information about your personal details. For instance, an identity thief could contact one of your ex-employers to ask for a "reference". If you really need your employment history in your profile, limit the data to only the places you have worked and remove any information related to when you worked there.</p><ul><li>Emloyment Information can't be hidden, if you don't want third-party applications to see this data, remove your employment history.</li></ul></fb:error>
+<br/>
+<h1>Marketing</h1>
+<p>A lot of the other information in your profile relates to your personal preferences.</p>
+<h2>Interests</h2>
+<p>A list of your interests are available to applications that you install into your profile.  This information could be used for companies to use for marketing information without your consent. Enusre that none of these are passwords for any services that use.</p>
+<p>{{info.interests}}</p>
+<h2>Movies</h2>
+<p>A list of your favorite movies are available to applications that you install into your profile.  This information could be used for companies to use for marketing information without your consent. Enusre that none of these are passwords for any services that use.</p>
+<p>{{info.movies}}</p>
+<h2>Music</h2>
+<p>A list of your favorite music is available to applications that you install into your profile.  This information could be used for companies to use for marketing information without your consent. Enusre that none of these are passwords for any services that use.</p>
+<p>{{info.music}}</p>
+<h2>T.V. Programmes</h2>
+<p>A list of your favorite tv programmes are available to applications that you install into your profile.  This information could be used for companies to use for marketing information without your consent. Enusre that none of these are passwords for any services that use.</p>
+<p>{{info.tv}}</p>
+<h1>Friends</h1>
+<p>By adding an application into your profile your friends data is also available too.</p>
+<p>See below for a sample of your friends data that is visble.</p>
+<table style="width: 100%">
+   {% for friend in friends %}
+   <tr style="margin-bottom: 10px;">
+    <td><h2>{{friend.first_name}} {{ friend.last_name }}</h2>
+        <img src="{{friend.pic}}" style="float: left; margin-right: 10px;" />
+        Birthday: {{friend.birthday}}<br/>
+        Home Town: {{ friend.hometown_location.city }} {{ friend.hometown_location.state }} {{ friend.hometown_location.zip }} {{ friend.hometown_location.country }}<br/>
+        Current Location: {{ friend.current_location.city }} {{ friend.current_location.state }} {{ friend.current_location.zip }} {{ friend.current_location.country }}</td></tr>
+   {% endfor %}
+</table>
+<h1>Identity Theft Information</h1>
+<p>If you would like more information about Identity theft, please contact your local authorities, police, credit reference agencies and banks.</p>
+<h2>Links</h2>
+<ul>
+        <li><a href="http://www.identity-theft.org.uk/">Home Office - Identity Theft</a></li>
+        <li><a href="http://www.identity-theft.org.uk/who-can-help.html">Home office - Who can help</a></li>
+        <li><a href="http://en.wikipedia.org/wiki/Identity_theft">Wikipedia - Information about Identity theft</a></li>
+        <li><a href="http://www.cifas.org.uk/default.asp?edit_id=561-56">CIFAS</a></li>
+        <li><a href="http://www.experian.com/identity_fraud/fraud.html">Experian</a></li>
+        <li><a href="http://www.equifax.com/credit-information/identity-theft">Equifax</a></li>
+        <li><a href="http://www.callcredit.co.uk/consumer/hot-topics/identity-theft">Call Credit</a></li>
+</ul>
